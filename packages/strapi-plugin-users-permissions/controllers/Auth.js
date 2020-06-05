@@ -257,7 +257,8 @@ module.exports = {
     }
     // Ability to pass OAuth callback dynamically
     grantConfig[provider].callback = _.get(ctx, 'query.callback') || grantConfig[provider].callback;
-    grantConfig[provider].redirect_uri = `${strapi.config.server.url}/connect/${provider}/callback`;
+    grantConfig[provider].redirect_uri = `${strapi.config.server.url}/${provider}/callback`;
+    ctx.state.grant = {dynamic: {subdomain: `${strapi.config.auth.subdomain}`}};
 
     return grant(grantConfig)(ctx, next);
   },

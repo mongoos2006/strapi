@@ -55,6 +55,8 @@ class PopUpForm extends React.Component {
   getRedirectURIProviderConf = () => {
     // NOTE: Still testings providers so the switch statement is likely to change
     switch (this.props.dataToEdit) {
+      case 'cas':
+        return `${strapi.backendURL}/connect/cas/callback`;
       case 'discord':
         return `${strapi.backendURL}/connect/discord/callback`;
       case 'facebook':
@@ -206,7 +208,7 @@ class PopUpForm extends React.Component {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FormattedMessage id="users-permissions.PopUpForm.Email.link.documentation" />
+          <FormattedMessage id="users-permissions.PopUpForm.Email.link.documentation"  />
         </a>
       ),
     };

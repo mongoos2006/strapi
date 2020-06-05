@@ -122,6 +122,52 @@ const getProfile = async (provider, query, callback) => {
     .get();
 
   switch (provider) {
+
+
+    case 'cas': 
+    {
+      const cas = 
+      purest(
+        {
+          provider: 'cas',
+          config: {
+            cas: {
+              'https://catapult.projectkenobi.com/cas': {
+                __domain: {
+                  auth: {
+                    auth: { bearer: '[0]' },
+                  },
+                },
+                '{endpoint}': {
+                  __path: {
+                    alias: '__default',
+                  },
+                },
+              },
+
+            },
+          },
+        }
+      );
+      cas
+        .query()
+        .get('oidc/profile')
+        .auth(access_token)
+        .request((err, res, body) => {
+          if (err) {
+            callback(err);
+          } else {
+            callback(null, {
+              username: body.uid,
+              email: body.strapiemail,
+            });
+          }
+        });
+      break;
+    }
+
+
+
     case 'discord': {
       const discord = purest({
         provider: 'discord',

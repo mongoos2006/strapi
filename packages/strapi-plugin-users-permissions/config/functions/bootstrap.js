@@ -22,6 +22,15 @@ module.exports = async () => {
       enabled: true,
       icon: 'envelope',
     },
+    cas: {
+      enabled: false,
+      icon: 'envelope',
+      key: '',
+      secret: '',
+      callback: `${strapi.config.server.url}/auth/discord/callback`,
+      scope: ['email'],
+      provider_subdomain: '',
+    },
     discord: {
       enabled: false,
       icon: 'discord',

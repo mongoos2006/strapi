@@ -43,7 +43,7 @@ const mongo = {
     username: 'root',
     password: 'strapi',
     port: 27017,
-    host: 'localhost',
+    host: 'strapi_mongo_1',
   },
   options: {},
 };
